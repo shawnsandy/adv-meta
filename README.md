@@ -24,12 +24,10 @@ Installation
 
 `
 <pre>
-<?php
     $config['adv_meta_values'] = array(
     'category' => 'Category',
     'status' => 'Status',
     'type' => 'Type'
-?>
 </pre>
 `
 
