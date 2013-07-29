@@ -23,10 +23,12 @@ Installation
 2. Open the pico config.php and insert add your custom meta values eg.
 `
 <pre>
-    $conf ig['adv_meta_values'] = array(
+<?php
+    $config['adv_meta_values'] = array(
     'category' => 'Category',
     'status' => 'Status',
     'type' => 'Type'
+?>
 </pre>
 `
 3. Add the values to your page as you would default values
