@@ -1,7 +1,7 @@
 adv-meta
 ========
 
-A simple plugin to extend the meta values you can add to a page
+A simple plugin to extend the meta values you can add to a page header, makes it easy to customize page headers until such time that pico adds this by default.
 
 `
 <pre>
