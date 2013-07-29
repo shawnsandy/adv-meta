@@ -1,7 +1,7 @@
 Pico adv-meta
 ========
 
-A simple plugin to extend and add any values to the page header, makes it easy to customize page meta for now until Pico (devs) adds this option by default.
+A simple plugin to extend and add any values to the page header, makes it easy to customize page meta -- until Pico (devs) adds this option by default.
 
 `
 <pre>
