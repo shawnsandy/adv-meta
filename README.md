@@ -24,7 +24,6 @@ Installation
 3. Add the values to your page as you would default values
 4. They can now be accessed in themes as regular meta values {{ meta.category }}
 
-
 `
 <pre>
     $config['adv_meta_values'] = array(
