@@ -51,11 +51,6 @@ class Adv_Meta {
         $content = $this->content;
         $config = $this->config;
 
-//        $adv_config = dirname(__FILE__) . 'adv_meta_config.php';
-//
-//        if (file_exists($adv_config))
-//            include_once $adv_config;
-
         if (!isset($this->config))
             $config = array();
 
@@ -71,9 +66,6 @@ class Adv_Meta {
                 $headers[$field] = '';
             }
         }
-
-        //$this->adv_meta = $headers;
-
         return $headers;
     }
 
