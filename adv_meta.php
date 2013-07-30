@@ -9,7 +9,19 @@
  */
 class Adv_Meta {
 
-    private $meta_values = array(),
+    private /* default meta valuse */
+            $meta_values = array(
+                //page category
+                'category' => 'Category',
+                //page status
+                'status' => 'Status',
+                //Type -- page, post, plugin
+                'type' => 'Type',
+                //Page Thumbnail -- (theme/images)
+                'thumbnail' => 'Thumbnail',
+                // image for page icon -- (theme/images/)
+                'icon' => 'Icon'
+                    ),
             $content = null,
             $config = null;
 
@@ -20,13 +32,11 @@ class Adv_Meta {
     public function before_load_content(&$file) {
 
         $this->content = file_get_contents($file);
-
     }
 
     public function config_loaded(&$settings) {
 
         $this->config = $settings;
-
     }
 
     public function file_meta(&$meta) {
@@ -39,7 +49,6 @@ class Adv_Meta {
 
         return $meta;
     }
-
 
     /**
      * Grab the file meta here
