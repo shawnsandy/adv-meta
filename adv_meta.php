@@ -32,6 +32,7 @@ class Adv_Meta {
     public function before_load_content(&$file) {
 
         $this->content = file_get_contents($file);
+        
     }
 
     public function config_loaded(&$settings) {
