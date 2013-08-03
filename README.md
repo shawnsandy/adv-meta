@@ -20,14 +20,16 @@ Installation
 -------------
 
 1. Copy the plugin file/folder the plugins directory of your Pico site.
-2. Open the pico config.php and insert add your custom meta values or use the plugin default -- (category,status,type,thumbnail.icon).
+2. Open the pico config.php and insert add your custom meta values or use the plugin default -- (slug,category,status,type,thumbnail,icon,tpl).
 3. Add the custom values to your page as you would normally
 4. They can now be accessed in themes as regular meta values {{ meta.category }}
 
-#### Sample adv_meta_values for config
+#### Sample with Default adv_meta_values, copy to your config and modify
 `
 <pre>
     $config['adv_meta_values'] = array(
+    //page slug keep lower case
+    'slug' => 'Slug',
     //page category
     'category' => 'Category',
     //page status
@@ -37,6 +39,8 @@ Installation
     //Page Thumbnail -- (theme/images)
     'thumbnail' => 'Thumbnail',
     // image for page icon -- (theme/images/)
-    'icon' => 'Icon'
+    'icon' => 'Icon',
+    //use custom page template(s)
+    'tpl' => 'Tpl'
 </pre>
 `

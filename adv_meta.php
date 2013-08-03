@@ -9,8 +9,10 @@
  */
 class Adv_Meta {
 
-    private /* default meta valuse */
+    private /* default meta values */
             $meta_values = array(
+                //page slug keep lower case
+                'slug' => 'Slug',
                 //page category
                 'category' => 'Category',
                 //page status
@@ -20,7 +22,9 @@ class Adv_Meta {
                 //Page Thumbnail -- (theme/images)
                 'thumbnail' => 'Thumbnail',
                 // image for page icon -- (theme/images/)
-                'icon' => 'Icon'
+                'icon' => 'Icon',
+                //use custom page template(s)
+                'tpl' => 'Tpl'
                     ),
             $content = null,
             $config = null;
@@ -32,12 +36,13 @@ class Adv_Meta {
     public function before_load_content(&$file) {
 
         $this->content = file_get_contents($file);
-        
+
     }
 
     public function config_loaded(&$settings) {
 
         $this->config = $settings;
+
     }
 
     public function file_meta(&$meta) {
