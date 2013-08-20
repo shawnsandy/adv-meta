@@ -3,8 +3,8 @@
 /**
  * The file description. *
  * @package Pico
- * @subpackage Basejump
- * @since BJ 1.0
+ * @subpackage Adv meta
+ * @version 0.1.3
  * @author Shawn Sandy <shawnsandy04@gmail.com>
  */
 class Adv_Meta {
@@ -27,7 +27,8 @@ class Adv_Meta {
                 'tpl' => 'Tpl'
                     ),
             $content = null,
-            $config = null;
+            $config = null,
+            $custom_meta_enabled = false;
 
     public function __construct() {
 
@@ -42,18 +43,33 @@ class Adv_Meta {
     public function config_loaded(&$settings) {
 
         $this->config = $settings;
+        if(isset($settings['custom_meta_values']))
+            $this->custom_meta_enabled = TRUE;
 
     }
 
     public function file_meta(&$meta) {
+        // stop adv_meta if custom meta is enabled
+        if(is_array($this->custom_meta_enabled))
+        return $meta;
 
         $adv_meta = $this->adv_file_meta();
-
         $meta = array_merge($meta, $adv_meta);
-
         //var_dump($meta);
-
         return $meta;
+
+    }
+
+    public function get_pages(&$pages, &$current_page, &$prev_page, &$next_page) {
+
+        //var_dump($pages);
+    }
+
+
+    public function before_render(&$twig_vars, &$twig) {
+
+        $twig_vars['adv_meta'] = $this->adv_file_meta();
+
     }
 
     /**
