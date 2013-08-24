@@ -28,7 +28,8 @@ class Adv_Meta {
                     ),
             $content = null,
             $config = null,
-            $custom_meta_enabled = false;
+            $custom_meta_enabled = false,
+            $meta = array();
 
     public function __construct() {
 
@@ -44,24 +45,27 @@ class Adv_Meta {
 
         $this->config = $settings;
         if(isset($settings['custom_meta_values']))
-            $this->custom_meta_enabled = TRUE;
+            $this->custom_meta_enabled = $settings['custom_meta_values'];
 
     }
 
     public function file_meta(&$meta) {
         // stop adv_meta if custom meta is enabled
-        if(is_array($this->custom_meta_enabled))
+        if(is_array($this->custom_meta_enabled)):
+           // var_dump($meta);
+        $this->meta = $meta;
         return $meta;
-
+        else :
         $adv_meta = $this->adv_file_meta();
         $meta = array_merge($meta, $adv_meta);
         //var_dump($meta);
         return $meta;
+        endif;
+
 
     }
 
     public function get_pages(&$pages, &$current_page, &$prev_page, &$next_page) {
-
         //var_dump($pages);
     }
 
