@@ -37,6 +37,7 @@ class Adv_Meta {
 
     public function before_load_content(&$file) {
 
+        if(file_exists($file))
         $this->content = file_get_contents($file);
 
     }
