@@ -6,7 +6,9 @@
  * @subpackage Adv meta
  * @version 0.1.3
  * @author Shawn Sandy <shawnsandy04@gmail.com>
+ *
  */
+
 class Adv_Meta {
 
     private /* default meta values */
@@ -37,43 +39,48 @@ class Adv_Meta {
 
     public function before_load_content(&$file) {
 
-        if(file_exists($file))
-        $this->content = file_get_contents($file);
-
+        if (file_exists($file))
+            $this->content = file_get_contents($file);
+        
     }
 
     public function config_loaded(&$settings) {
 
         $this->config = $settings;
-        if(isset($settings['custom_meta_values']))
-            $this->custom_meta_enabled = $settings['custom_meta_values'];
+        if (isset($settings['custom_meta_values']))
+            $this->meta_values = $settings['custom_meta_values'];
+    }
+
+    public function before_read_file_meta(&$headers) {
+
+        foreach ($this->meta_values as $key => $value) {
+            $headers[$key] = $value ;
+        }
+
+        //var_dump($headers);
 
     }
 
     public function file_meta(&$meta) {
         // stop adv_meta if custom meta is enabled
-        if(is_array($this->custom_meta_enabled)):
-           // var_dump($meta);
-        $this->meta = $meta;
-        return $meta;
-        else :
-        $adv_meta = $this->adv_file_meta();
-        $meta = array_merge($meta, $adv_meta);
+//        if (is_array($this->custom_meta_enabled)):
+//            // var_dump($meta);
+//            $this->meta = $meta;
+//            return $meta;
+//        else :
+//            $adv_meta = $this->adv_file_meta();
+//            $meta = array_merge($meta, $adv_meta);
+//            //var_dump($meta);
+//            return $meta;
+//        endif;
         //var_dump($meta);
-        return $meta;
-        endif;
-
-
-    }
-
-    public function get_pages(&$pages, &$current_page, &$prev_page, &$next_page) {
-        //var_dump($pages);
     }
 
 
     public function before_render(&$twig_vars, &$twig) {
 
         $twig_vars['adv_meta'] = $this->adv_file_meta();
+        //var_dump($this->adv_file_meta());
 
     }
 
@@ -102,7 +109,9 @@ class Adv_Meta {
                 $headers[$field] = '';
             }
         }
+        //var_dump($headers);
         return $headers;
+
     }
 
 }
