@@ -45,6 +45,21 @@ Installation
 </pre>
 `
 
+#### Access the meta in page loops;
+
+````
+{% for page in pages %}
+{% if page.date %}
+<!-- Note we check for Date field (posts) here -->
+<aside>
+<h1 class=""><a href="{{ page.url }}">{{ page.title }}</a></h1>
+    <p class="">{{ page.excerpt }}</p>
+    <p>Status: {{ page.type }} -  {{ page.slug }}</p>
+</aside>
+{% endif %}
+{% endfor %}
+````
+
 License
 -------
 
