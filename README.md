@@ -54,7 +54,7 @@ Installation
 <aside>
 <h1 class=""><a href="{{ page.url }}">{{ page.title }}</a></h1>
     <p class="">{{ page.excerpt }}</p>
-    <p>Status: {{ page.type }} -  {{ page.slug }}</p>
+    <p>Meta- Values : Type - {{ page.type }} - Slug - {{ page.slug }}</p>
 </aside>
 {% endif %}
 {% endfor %}
