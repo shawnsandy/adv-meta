@@ -8,7 +8,6 @@
  * @author Shawn Sandy <shawnsandy04@gmail.com>
  *
  */
-
 class Adv_Meta {
 
     private /* default meta values */
@@ -41,7 +40,6 @@ class Adv_Meta {
 
         if (file_exists($file))
             $this->content = file_get_contents($file);
-        
     }
 
     public function config_loaded(&$settings) {
@@ -54,34 +52,27 @@ class Adv_Meta {
     public function before_read_file_meta(&$headers) {
 
         foreach ($this->meta_values as $key => $value) {
-            $headers[$key] = $value ;
+            $headers[$key] = $value;
         }
 
         //var_dump($headers);
-
     }
 
-    public function file_meta(&$meta) {
-        // stop adv_meta if custom meta is enabled
-//        if (is_array($this->custom_meta_enabled)):
-//            // var_dump($meta);
-//            $this->meta = $meta;
-//            return $meta;
-//        else :
-//            $adv_meta = $this->adv_file_meta();
-//            $meta = array_merge($meta, $adv_meta);
-//            //var_dump($meta);
-//            return $meta;
-//        endif;
-        //var_dump($meta);
-    }
+    public function get_page_data(&$data, $page_meta) {
 
+        $meta = $this->adv_file_meta();
+
+        foreach ($meta as $key => $value) {
+            $data[$key] = $value ;
+        }
+
+        //var_dump($data);
+    }
 
     public function before_render(&$twig_vars, &$twig) {
 
         $twig_vars['adv_meta'] = $this->adv_file_meta();
         //var_dump($this->adv_file_meta());
-
     }
 
     /**
@@ -111,7 +102,6 @@ class Adv_Meta {
         }
         //var_dump($headers);
         return $headers;
-
     }
 
 }
