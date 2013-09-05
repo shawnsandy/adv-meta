@@ -60,13 +60,11 @@ class Adv_Meta {
 
     public function get_page_data(&$data, $page_meta) {
 
-        $meta = $this->adv_file_meta();
+        //$data = array_merge($data, $this->adv_file_meta()) ;
 
-        foreach ($meta as $key => $value) {
+        foreach ($page_meta as $key => $value) {
             $data[$key] = $value ;
         }
-
-        //var_dump($data);
     }
 
     public function before_render(&$twig_vars, &$twig) {
