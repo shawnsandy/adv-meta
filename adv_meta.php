@@ -8,8 +8,6 @@
  * @author Shawn Sandy <shawnsandy04@gmail.com>
  *
  */
-use \Michelf\MarkdownExtra;
-
 class Adv_Meta {
 
     private /* default meta values */
@@ -32,8 +30,7 @@ class Adv_Meta {
             $content = null,
             $config = null,
             $custom_meta_enabled = false,
-            $meta = array(),
-            $column_data;
+            $meta = array();
 
     public function __construct() {
 
@@ -57,46 +54,23 @@ class Adv_Meta {
         foreach ($this->meta_values as $key => $value) {
             $headers[$key] = $value;
         }
+
         //var_dump($headers);
     }
 
-    public function content_parsed(&$content) {
-        $pattern = '#({column:(.*?)})(.+?)({/column:\\2})#ims';
-        preg_match_all($pattern, $content, $matches);
-
-        if (!empty($matches)):
-            $counter = 0;
-            foreach ($matches[2] as $var) {
-                $columns[trim($var)] = MarkdownExtra::defaultTransform($matches[3][$counter]);
-                $counter++;
-            }
-            $content = $columns['content'];
-            $this->column_data = $columns;
-
-        endif;
-    }
-
     public function get_page_data(&$data, $page_meta) {
+
         //$data = array_merge($data, $this->adv_file_meta()) ;
+
         foreach ($page_meta as $key => $value) {
-            $data[$key] = $value;
+            $data[$key] = $value ;
         }
-        $data['content'] = $this->column_data['content'];
-        $data['excerpt'] = $this->limit_words(strip_tags($this->column_data['content']), $this->config['excerpt_length']) ;
     }
 
     public function before_render(&$twig_vars, &$twig) {
 
         $twig_vars['adv_meta'] = $this->adv_file_meta();
         //var_dump($this->adv_file_meta());
-        if(!empty($this->column_data)):
-            $data = $this->column_data;
-            //unset($data['content']);
-            foreach ($data as $key => $val):
-              $twig_vars[$key] = $val;
-            endforeach;
-        endif;
-        var_dump($twig_vars);
     }
 
     /**
@@ -127,19 +101,5 @@ class Adv_Meta {
         //var_dump($headers);
         return $headers;
     }
-
-    /**
-     * grabbed form pico
-     * @param type $string
-     * @param type $word_limit
-     * @return string
-     */
-    protected function limit_words($string, $word_limit)
-	{
-		$words = explode(' ',$string);
-		$excerpt = trim(implode(' ', array_splice($words, 0, $word_limit)));
-		if(count($words) > $word_limit) $excerpt .= '&hellip;';
-		return $excerpt;
-	}
 
 }
