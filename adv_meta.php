@@ -50,7 +50,7 @@ class Adv_Meta {
     }
 
     public function before_read_file_meta(&$headers) {
-
+        $this->adv_file_meta();
         foreach ($this->meta_values as $key => $value) {
             $headers[$key] = $value;
         }
