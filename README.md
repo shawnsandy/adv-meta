@@ -27,7 +27,7 @@ Installation
 #### Sample with Default adv_meta_values, copy to your config and modify
 `
 <pre>
-    $config['adv_meta_values'] = array(
+    $config['custom_meta_values'] = array(
     //page slug keep lower case
     'slug' => 'Slug',
     //page category
