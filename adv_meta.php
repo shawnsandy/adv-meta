@@ -4,7 +4,7 @@
  * The file description. *
  * @package Pico
  * @subpackage Adv meta
- * @version 0.1.3
+ * @version 0.1.4
  * @author Shawn Sandy <shawnsandy04@gmail.com>
  *
  */
@@ -54,7 +54,6 @@ class Adv_Meta {
         foreach ($this->meta_values as $key => $value) {
             $headers[$key] = $value;
         }
-
         //var_dump($headers);
     }
 
